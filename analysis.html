@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+
+    <a href="about.html"><i class="fas fa-circle-info"></i> About</a>
+
+    <a href="collection.html"><i class="fas fa-clipboard-list"></i> Data Collection</a>
+
+    <a href="analysis.html"><i class="fas fa-chart-column"></i> Analysis</a>
+
+    <a href="results.html"><i class="fas fa-square-poll-vertical"></i> Results</a>
+</nav>
+
+<div class="content">
+
+<h1>Survey Analysis</h1>
+<h2>Age Group Distribution</h2>
+
+<table border="1" cellpadding="10">
+
+<tr>
+<th>Age Group</th>
+<th>Percentage</th>
+</tr>
+
+<tr>
+<td>16-19 Years</td>
+<td>43.6%</td>
+</tr>
+
+<tr>
+<td>19-21 Years</td>
+<td>50.9%</td>
+</tr>
+
+<tr>
+<td>22-24 Years</td>
+<td>5.5%</td>
+</tr>
+
+</table>
+
+<p>
+Most respondents belong to the 19–21 years age group (50.9%), followed by the 16–19 years age group (43.6%).
+</p>
+
+<br>
+<h2>1. Daily Social Media Usage</h2>
+<canvas id="usageChart"></canvas>
+
+<h2>2. Most Used Social Media Platform</h2>
+<canvas id="platformChart"></canvas>
+
+<h2>3. Time Students Stop Using Social Media at Night</h2>
+<canvas id="nightChart"></canvas>
+
+<h2>4. Average Sleep Duration</h2>
+<canvas id="sleepChart"></canvas>
+
+<h2>5. Impact on Sleep Quality</h2>
+<canvas id="sleepQualityChart"></canvas>
+
+<h2>6. Distraction While Studying</h2>
+<canvas id="distractionChart"></canvas>
+
+<h2>7. Impact on Productivity</h2>
+<canvas id="productivityChart"></canvas>
+
+<h2>8. Attempts to Reduce Screen Time</h2>
+<canvas id="screenTimeChart"></canvas>
+<h2>Suggestions for Healthy Social Media Habits</h2>
+
+<div class="stats-container">
+
+<div class="card">
+<i class="fas fa-bed"></i>
+<h3>Better Sleep</h3>
+<p>Reduce screen time before bedtime.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-clock"></i>
+<h3>Time Management</h3>
+<p>Set daily limits for social media usage.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-book"></i>
+<h3>Study Focus</h3>
+<p>Avoid mobile phone usage during study hours.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-person-walking"></i>
+<h3>Healthy Lifestyle</h3>
+<p>Spend more time on physical activities and hobbies.</p>
+</div>
+
+<div class="result-card">
+<h2>Summary</h2>
+
+<p>
+Most students suggested limiting social media usage,
+avoiding late-night scrolling, maintaining study focus,
+and balancing online activities with healthy daily habits.
+</p>
+
+</div>
+<br>
+
+</div>
+
+<script>
+
+const labelOptions = {
+    plugins: [ChartDataLabels],
+    options: {
+        responsive: true,
+        plugins: {
+            datalabels: {
+                formatter: (value) => value + "%",
+                font: {
+                    weight: 'bold',
+                    size: 12
+                }
+            }
+        }
+    }
+};
+
+// 1 Usage
+new Chart(document.getElementById("usageChart"), {
+    type: "pie",
+    data: {
+        labels: ["Less than 1 Hour","1-3 Hours","3-5 Hours","More than 5 Hours"],
+        datasets: [{
+            data: [14.5,32.7,32.7,20]
+        }]
+    },
+    ...labelOptions
+});
+
+// 2 Platform
+new Chart(document.getElementById("platformChart"), {
+    type: "bar",
+    data: {
+        labels: ["Instagram","WhatsApp","YouTube","Other"],
+        datasets: [{
+            label: "Percentage",
+            data: [83.6,5.5,9.1,1.8]
+        }]
+    },
+    ...labelOptions
+});
+
+// 3 Night Usage
+new Chart(document.getElementById("nightChart"), {
+    type: "bar",
+    data: {
+        labels: ["Before 9 PM","9-10 PM","10-11 PM","After 11 PM"],
+        datasets: [{
+            label: "Percentage",
+            data: [16.4,23.6,36.4,23.6]
+        }]
+    },
+    ...labelOptions
+});
+
+// 4 Sleep Duration
+new Chart(document.getElementById("sleepChart"), {
+    type: "pie",
+    data: {
+        labels: ["Less than 5 Hours","5-7 Hours","7-9 Hours","More than 9 Hours"],
+        datasets: [{
+            data: [9.1,54.5,29.1,7.3]
+        }]
+    },
+    ...labelOptions
+});
+
+// 5 Sleep Quality
+new Chart(document.getElementById("sleepQualityChart"), {
+    type: "pie",
+    data: {
+        labels: ["Yes","No","Sometimes"],
+        datasets: [{
+            data: [52.7,16.4,30.9]
+        }]
+    },
+    ...labelOptions
+});
+
+// 6 Distraction
+new Chart(document.getElementById("distractionChart"), {
+    type: "bar",
+    data: {
+        labels: ["Never","Rarely","Sometimes","Often","Always"],
+        datasets: [{
+            label: "Percentage",
+            data: [3.6,5.5,43.6,25.5,21.8]
+        }]
+    },
+    ...labelOptions
+});
+
+// 7 Productivity
+new Chart(document.getElementById("productivityChart"), {
+    type: "pie",
+    data: {
+        labels: ["Yes","No","Maybe"],
+        datasets: [{
+            data: [45.5,25.5,29.1]
+        }]
+    },
+    ...labelOptions
+});
+
+// 8 Screen Time Reduction
+new Chart(document.getElementById("screenTimeChart"), {
+    type: "pie",
+    data: {
+        labels: ["Yes","No"],
+        datasets: [{
+            data: [67.3,32.7]
+        }]
+    },
+    ...labelOptions
+});
+
+
+</script>
+
+<footer>
+    <p>Community Project | Department of Artificial Intelligence and Machine Learning | MVGR College of Engineering | 2026-27</p>
+</footer>
+
+</body>
+</html>
